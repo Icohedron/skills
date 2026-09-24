@@ -24,7 +24,7 @@ If you want to keep up with changes to these skills, and any new ones I create, 
 
 ## Installation (30-second setup)
 
-Two ways in, two philosophies. **The [Claude Code plugin](https://code.claude.com/docs/en/plugins)** installs the whole set as a managed, read-only bundle that updates when I ship, so you subscribe rather than fork. **[skills.sh](https://skills.sh/mattpocock/skills)** copies editable skill files into your project, so you can hack on them and make them your own. Pick one: installing both leaves you with every skill twice.
+Two philosophies: **the [Claude Code plugin](https://code.claude.com/docs/en/plugins) and the Pi package** install the promoted set as managed bundles, while **[skills.sh](https://skills.sh/mattpocock/skills)** copies editable skill files into your project. Pick one route per agent to avoid duplicate skills. Claude Code plugin updates arrive automatically; Pi package updates require `pi update --extensions`.
 
 ### 1. Get the skills
 
@@ -42,6 +42,25 @@ Or, from inside a session:
 ```
 
 It's in Claude Code's official marketplace, so there's nothing to add first, and updates arrive automatically.
+
+</details>
+
+<details>
+<summary><strong>Pi</strong></summary>
+
+Pi can install the promoted skills directly from this repository as a managed package. It loads `skills/engineering/` and `skills/productivity/` only, not the draft, retired, or misc buckets. The package contains skills, not executable extension code. Updates are requested explicitly.
+
+```bash
+pi install git:github.com/mattpocock/skills
+```
+
+To update the installed package later:
+
+```bash
+pi update --extensions
+```
+
+In Pi, invoke the setup skill with `/skill:setup-matt-pocock-skills`.
 
 </details>
 
@@ -71,9 +90,9 @@ It writes the skills into your repo as ordinary files you own and can edit. Noth
 
 </details>
 
-### 2. Run `/setup-matt-pocock-skills`
+### 2. Run `setup-matt-pocock-skills`
 
-In your agent, run it once per repo. It will:
+Invoke it once per repo (`/skill:setup-matt-pocock-skills` in Pi, `/setup-matt-pocock-skills` in Claude Code). It will:
 
 - Ask you which issue tracker you want to use (GitHub, Linear, or local files)
 - Ask you what labels you apply to tickets when you triage them (`/triage` uses labels)

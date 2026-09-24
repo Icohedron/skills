@@ -22,9 +22,29 @@ It's in Claude Code's official marketplace, so there's nothing to add first, and
 
 </canonical-block>
 
+## Pi: the package
+
+Pi can install the promoted skills directly from this repository as a managed package. It loads `skills/engineering/` and `skills/productivity/` only, not the draft, retired, or misc buckets. The package contains skills, not executable extension code. Updates are requested explicitly.
+
+<canonical-block name="pi">
+
+```bash
+pi install git:github.com/mattpocock/skills
+```
+
+To update the installed package later:
+
+```bash
+pi update --extensions
+```
+
+In Pi, invoke the setup skill with `/skill:setup-matt-pocock-skills`.
+
+</canonical-block>
+
 ## Codex, and other agents: skills.sh
 
-The plugin is Claude Code only. Everywhere else, [skills.sh](https://skills.sh/mattpocock/skills) copies editable skill files into the project. Use the whole-set form on `README.md`:
+The native Claude Code plugin and Pi package are managed bundles. For Codex and agents without a native package, [skills.sh](https://skills.sh/mattpocock/skills) copies editable skill files into the project. Use the whole-set form on `README.md`:
 
 <canonical-block name="skills-sh-whole-set">
 
@@ -52,9 +72,9 @@ npx skills@latest update <name>
 
 `skills@latest` is the pinned spelling in all three. The pages under `docs/` used to carry their own copy of these commands; those blocks are now deleted rather than corrected, because the site renders the install commands itself.
 
-## The two routes are exclusive
+## Pick one route per agent
 
-The plugin is a managed, read-only bundle you subscribe to. skills.sh writes files you own and edit. Installing both leaves the user with every skill twice: always say "pick one".
+The Claude Code plugin and Pi package are managed bundles; skills.sh writes files you own and edit. Installing a managed bundle alongside skills.sh for the same agent leaves duplicate skills: always say "pick one". Pi package updates require `pi update --extensions`; do not promise automatic updates.
 
 ## Not the install story
 
